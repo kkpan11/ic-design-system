@@ -1,9 +1,9 @@
 ---
 path: "/components/toast"
 
-navPriority: 32
+navPriority: 36
 
-date: "2023-11-09"
+date: "2024-04-15"
 
 title: "Toast"
 
@@ -64,7 +64,7 @@ Use toasts to provide an additional method of feedback about a user action. Avoi
 
 Toasts can be set to disappear on their own, or remain visible on screen until actioned. Toasts that automatically disappear should not contain any essential information.
 
-An action such as a link or button can be included but isn’t recommended. Try to place actions in the main content of the page instead. If an action is included, then the toast can't be set to automatically dismiss.
+An action, such as a link or button, can be included but isn’t recommended. Try to place actions in the main content of the page instead. If an action is included, then the toast can't be set to automatically dismiss.
 
 <DoDontCaution
   imageSrc={toastFig1}
@@ -111,7 +111,7 @@ Toasts can be set to auto-dismiss after an adjustable length of time. Make sure 
 
 <IcTypography
   variant="label"
-  style={{ marginTop: "-16px", marginBottom: "24px" }}
+  style={{ marginTop: "-1rem", marginBottom: "1.5rem" }}
 >
   A page with a toast that appears at the bottom center of the screen and
   disappears after a short delay.
@@ -127,7 +127,7 @@ Toasts that don’t auto-dismiss will have a close button.
 
 <IcTypography
   variant="label"
-  style={{ marginTop: "-16px", marginBottom: "24px" }}
+  style={{ marginTop: "-1rem", marginBottom: "1.5rem" }}
 >
   A page with a toast, that has a close button, that appears at the bottom
   center of the screen and disappears only when the dismiss button is clicked.
@@ -181,10 +181,10 @@ Specify a custom icon when using status unknown. Make sure that the icon is rela
   method to extend the duration of the message. This is to satisfy the{" "}
   <ic-link
     target="_blank"
-    href="https://www.w3.org/WAI/WCAG21/Understanding/timing-adjustable.html"
+    href="https://www.w3.org/WAI/WCAG22/Understanding/timing-adjustable.html"
     rel="noreferer noopener nofollow"
   >
-    WCAG 2.1 success criterion 2.2.1 Timing Adjustable
+    WCAG 2.2 success criterion 2.2.1 Timing Adjustable
   </ic-link>
   .
 </p>

@@ -6,6 +6,10 @@
   justify-content: space-between;
 }
 
+.toggle-button-container {
+  margin: auto var(--ic-space-xs) auto 0;
+}
+
 .comp-preview {
   position: relative;
   border: 1px solid var(--ic-architectural-300);
@@ -35,6 +39,10 @@
   padding: var(--ic-space-xl) var(--ic-space-md);
   box-sizing: border-box;
   flex-wrap: wrap;
+}
+
+.comp-zone.pattern {
+  container-type: inline-size;
 }
 
 .comp-zone.centered {
@@ -67,14 +75,9 @@
 
 .snippet-container {
   display: flex;
-  justify-content: flex-end;
   background-color: var(--ic-architectural-40) !important;
-}
-
-.snippet-container ic-button {
-  margin-top: var(--ic-space-xxs);
-  margin-right: var(--ic-space-xs);
-  margin-bottom: var(--ic-space-xs);
+  padding: var(--ic-space-xxs);
+  justify-content: space-between;
 }
 
 .snippet-container ic-button button.button {

@@ -3,7 +3,7 @@ path: "/components/button"
 
 navPriority: 6
 
-date: "2023-02-03"
+date: "2024-05-10"
 
 title: "Button"
 
@@ -49,14 +49,26 @@ There are five variants of button:
 - Primary buttons
 - Secondary buttons
 - Tertiary buttons
-- Icon buttons
 - Destructive buttons
+- Icon buttons
 
-<ComponentPreview style={{ gap: "8px" }}>
+<ComponentPreview style={{ gap: "0.5rem" }}>
   <IcButton variant="primary">Add to order</IcButton>
   <IcButton variant="secondary">View coffees</IcButton>
   <IcButton variant="tertiary">Find out more</IcButton>
   <IcButton variant="destructive">Cancel order</IcButton>
+  <IcButton variant="icon" aria-label="Coffee cup">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="24"
+      viewBox="0 0 24 24"
+      width="24"
+      fill="#000000"
+    >
+      <path d="M0 0h24v24H0V0z" fill="none" />
+      <path d="M2,21V19H20V21H2M20,8V5H18V8H20M20,3A2,2 0 0,1 22,5V8A2,2 0 0,1 20,10H18V13A4,4 0 0,1 14,17H8A4,4 0 0,1 4,13V3H20M16,5H6V13A2,2 0 0,0 8,15H14A2,2 0 0,0 16,13V5Z" />
+    </svg>
+  </IcButton>
 </ComponentPreview>
 
 ## When to use
@@ -77,6 +89,10 @@ Use tertiary buttons to provide low emphasis for low priority actions on a page 
 
 Use tertiary buttons for dismissive actions such as to close a dialog, navigate back a step or to cancel an action.
 
+### Destructive buttons
+
+Use destructive buttons for actions that can't be reversed. For example, use them for a delete action that can't be undone.
+
 ### Icon buttons
 
 Icon buttons work like a normal button but don't include a visible text label. Use them to provide a compact method of triggering an action.
@@ -84,10 +100,6 @@ Icon buttons work like a normal button but don't include a visible text label. U
 Use icon buttons for well understood actions that are represented clearly by the icon's visual content. For example, a 'bin' icon indicates a delete function. Read more about [iconography](/styles/icons) for guidance on selecting and creating icons.
 
 Always provide a textual description available programmatically and a visible label that is displayed using a tooltip when hovering on an icon button.
-
-### Destructive buttons
-
-Use destructive buttons for actions that can't be reversed. For example, use them for a delete action that can't be undone.
 
 ## When not to use
 
@@ -111,9 +123,9 @@ Buttons should trigger actions and affect content on the current page or contain
 
 ## Interaction behaviour
 
-When an action triggers a background task use the button loading state to provide feedback to the user that something is happening.
+When an action triggers a background task, use the button loading state to provide feedback to the user that something is happening.
 
-<ComponentPreview style={{ gap: "8px" }}>
+<ComponentPreview style={{ gap: "0.5rem" }}>
   <IcButton variant="secondary" loading>
     Loading
   </IcButton>
@@ -279,7 +291,7 @@ Add useful labels to buttons so that they don't rely on context. Avoid using lon
 
 Always specify an accessible label for the button. The accessible label can include more detail than is described in the visible label, but make sure that the visible label text is included within the accessible label.
 
-For example, a button may have a visible label which reads ‘Submit’. The accessible label may read ‘Submit form’. This includes more information to aid assistive technology users, but still includes the full visible label.
+For example, a button may have a visible label that reads ‘Submit’. The accessible label may read ‘Submit form’. This includes more information to aid assistive technology users, but still includes the full visible label.
 
 ### Icons
 
@@ -306,7 +318,7 @@ Always provide alternative descriptions for icons if they aren't decorative. Onl
 
 ## Accessibility considerations
 
-Add labels to all icon buttons using a [tooltip](/components/tooltip) which is useful to sighted users too.
+Add labels to all icon buttons using a [tooltip](/components/tooltip), which is useful to sighted users too.
 
 Use useful and context-free labels. If necessary, add additional context in the accessible label.
 

@@ -230,7 +230,7 @@ const Layout: React.FC<LayoutProps> = ({
         />
       </Helmet>
       {!GATSBY_GA_TRACKING_ID && (
-        <ic-classification-banner classification="official" />
+        <ic-classification-banner id="site-banner" classification="official" />
       )}
       <CookieConsentContext.Provider value={value}>
         <ClientOnly>
@@ -262,15 +262,17 @@ const Layout: React.FC<LayoutProps> = ({
             description={FOOTER_PROPS.content}
             caption={FOOTER_PROPS.caption}
           >
-            {FOOTER_PROPS.footerLinks.map((footerLink: FooterLinks) => (
-              <ic-footer-link
-                slot="link"
-                href={withPrefix(footerLink.link)}
-                key={footerLink.key}
-              >
-                {footerLink.text}
-              </ic-footer-link>
-            ))}
+            {FOOTER_PROPS.footerLinks
+              .filter((footerLink: FooterLinks) => footerLink.key !== undefined)
+              .map((footerLink: FooterLinks) => (
+                <ic-footer-link
+                  slot="link"
+                  href={withPrefix(footerLink.link)}
+                  key={footerLink.key}
+                >
+                  {footerLink.text}
+                </ic-footer-link>
+              ))}
             <div slot="logo" className="logo-wrapper">
               <ic-footer-link href="https://sis.gov.uk">
                 <SISLogo aria-hidden="true" />
