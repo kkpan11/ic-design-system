@@ -1,0 +1,43 @@
+name: Update Roadmap
+permissions: read-all
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: "Type UPDATE to confirm"
+        required: true
+  repository_dispatch:
+    types: design-system-roadmap-update
+
+jobs:
+  ic-design-system-install-comps:
+    if: >
+      github.event_name == 'repository_dispatch' ||
+      (github.event_name == 'workflow_dispatch' &&
+       github.event.inputs.confirm == 'UPDATE')
+    name: "IC Design System Install Comps"
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: write
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: develop
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - uses: browser-actions/setup-chrome@latest
+      - name: Update Roadmap
+        run: |
+          node updateRoadmap.js
+      - name: Create update-roadmap Pull Request
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 #v8.1.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: "update-roadmap -> develop"
+          commit-message: "chore(root): Update roadmap"
+          body: "Github action updated roadmap"
+          branch: update-roadmap
+          base: develop

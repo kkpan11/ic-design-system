@@ -10,20 +10,24 @@ title: "Focus indicator"
 contribute: "https://github.com/mi6/ic-design-system/tree/main/src/content/structured/styles/focus-indicator.mdx"
 ---
 
-import focusIndicatorFig1 from "./images/fig-1-focus-indicators-inherit-the-border-radius-of-the-components-they-enclose.png";
-import focusIndicatorFig2 from "./images/fig-2-focus-on-links-is-indicated-by-an-underline.png";
+import {
+  Fig1FocusLight,
+  Fig1FocusDark,
+  Fig2FocusOnLinksLight,
+  Fig2FocusOnLinksDark,
+} from "./images";
 
 ## Enclosing components
 
 The focus indicator shows users where they are on a page. It encloses most components and inherits their shapes. They are especially useful for keyboard-only and power users.
 
-When applied to squared components for example [buttons](/components/button), [text field](/components/text-field) and [checkboxes](/components/checkbox), the focus indicator will fully enclose the component and therefore appear squared.
+When applied to squared components, for example [buttons](/components/inputs/button), [text field](/components/inputs/text-field) and [checkboxes](/components/inputs/checkbox), the focus indicator will fully enclose the component and therefore appear squared.
 
-Similarly, when applied to rounded components for example [radio](/components/radio), [switch](/components/switch) and [back to top](/components/back-to-top), the focus indicator will appear rounded.
+When applied to rounded components, for example [radio](/components/inputs/radio), [switch](/components/inputs/switch) and [back to top](/components/navigation/back-to-top), the focus indicator will appear rounded.
 
 <DoubleDoDontCaution>
   <DoDontCaution
-    imageSrc={focusIndicatorFig1}
+    imageSrc={[Fig1FocusLight, Fig1FocusDark]}
     imageAlt="An image of a button and back to top component, both with focus applied to them."
     state="none"
     caption="Focus indicators inherit the border radius of the components they enclose."
@@ -36,7 +40,7 @@ When links are focused, the indicator will appear as the hover state.
 
 <DoubleDoDontCaution>
   <DoDontCaution
-    imageSrc={focusIndicatorFig2}
+    imageSrc={[Fig2FocusOnLinksLight, Fig2FocusOnLinksDark]}
     imageAlt="An image of a blue link labelled 'Coffee blog' with a thick underline of the same colour."
     state="none"
     caption="Focus on links is indicated by a thick underline."
@@ -51,7 +55,7 @@ For most components, the focus indicator will enclose the full component, appear
 
 ### Internal to components
 
-Focus indicators are required to be fully visible. For components which are adjacent to other components, or the viewport edge, the focus indicator appears internal to the component to remain visible.
+Focus indicators are required to be fully visible. For components that are adjacent to other components, or the viewport edge, the focus indicator appears internal to the component to remain visible.
 
 Enough padding is provided within these components so that no content is obscured. Make sure to always confirm that no part of the focus indicator or the component's content is clipped or obscured.
 
@@ -66,7 +70,7 @@ Keyboard navigation controls vary between components. For specific information, 
   <ic-link
     target="_blank"
     href="https://www.w3.org/TR/WCAG22/"
-    rel="noreferer noopener nofollow"
+    rel="noreferrer noopener nofollow"
   >
     Web Content Accessibility Guidelines (WCAG) 2.2 Candidate Recommendation
   </ic-link>{" "}

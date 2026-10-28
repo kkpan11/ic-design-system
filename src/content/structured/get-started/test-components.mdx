@@ -1,16 +1,23 @@
 ---
-path: "/get-started/test-components"
+path: "/get-started/development/test-components"
 
 navPriority: 2
 
-date: "2023-02-16"
+date: "2024-06-25"
 
-title: "Testing the components"
+title: "Testing components"
 
 subTitle: "Test the UI Kit components within the shadow DOM using a testing framework."
-
-contribute: "https://github.com/mi6/ic-design-system/tree/main/src/content/structured/get-started/test-components.mdx"
 ---
+
+import { IcAlert } from "@ukic/react";
+
+<IcAlert
+  variant="info"
+  heading="Issues with Mocha"
+  message="We're aware of some issues around testing the components with Mocha. For the time being, we advise using one of the testing frameworks we provide guidance on."
+  dismissible
+/>
 
 ## How we've built the components
 
@@ -19,7 +26,7 @@ contribute: "https://github.com/mi6/ic-design-system/tree/main/src/content/struc
   <ic-link
     target="_blank"
     href="https://www.codecademy.com/resources/blog/what-is-dom/"
-    rel="noreferer noopener nofollow"
+    rel="noreferrer noopener nofollow"
   >
     'light DOM'
   </ic-link>
@@ -27,14 +34,14 @@ contribute: "https://github.com/mi6/ic-design-system/tree/main/src/content/struc
   of a webpage as a tree, where each DOM object is a node.
 </p>
 
-At the core, the UI Kit components are based off the web components specification which utilises the shadow DOM. This makes it possible to encapsulate each component’s markup structure, styling and functionality.
+At the core, the UI Kit components are based off the web components specification, which utilises the shadow DOM. This makes it possible to encapsulate each component’s markup structure, styling and functionality.
 
 <p>
   According to{" "}
   <ic-link
     target="_blank"
     href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM"
-    rel="noreferer noopener nofollow"
+    rel="noreferrer noopener nofollow"
   >
     Mozilla
   </ic-link>
@@ -49,6 +56,5 @@ Therefore, testing components within the shadow DOM can be problematic because e
 
 To ease the process of testing, here are guides to testing our UI Kit components in different testing frameworks.
 
-- [Jest](/get-started/test-components/testing-with-jest)
-- [React Testing Library](/get-started/test-components/testing-with-react-testing-library)
-- [Cypress](/get-started/test-components/testing-with-cypress)
+- [Jest and React Testing Library](/get-started/development/test-components/testing-with-jest-and-rtl)
+- [Cypress](/get-started/development/test-components/testing-with-cypress)

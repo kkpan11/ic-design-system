@@ -3,7 +3,7 @@ path: "/accessibility/coding/doctype"
 
 navPriority: 1
 
-date: "2022-11-15"
+date: "2024-04-18"
 
 title: "Doctypes"
 
@@ -27,7 +27,7 @@ This tells the browser how to render the HTML, as in this example:
   <ic-link
     target="_blank"
     href="https://www.w3.org/wiki/Doctypes_and_markup_styles"
-    rel="noreferer noopener nofollow"
+    rel="noreferrer noopener nofollow"
     id="fn-1"
   >
     choosing the right doctype
@@ -38,13 +38,12 @@ This tells the browser how to render the HTML, as in this example:
 ## When it goes wrong
 
 <p>
-  If no valid{" "}
-  <code style={{ backgroundColor: "#EEEFF0" }}>&lt;!DOCTYPE&gt;</code> is
+  If no valid <code className="language-text">&lt;!DOCTYPE&gt;</code> is
   declared, the browser switches to{" "}
   <ic-link
     target="_blank"
     href="https://developer.mozilla.org/en-US/docs/Web/HTML/Quirks_Mode_and_Standards_Mode"
-    rel="noreferer noopener nofollow"
+    rel="noreferrer noopener nofollow"
   >
     quirks mode
   </ic-link>
@@ -52,26 +51,3 @@ This tells the browser how to render the HTML, as in this example:
 </p>
 
 In this case, elements from the HTML5 specification may not parse or render properly. This can cause issues for people who use assistive technologies.
-
-## Best practice and WCAG
-
-<p>
-  Declaring a doctype is mentioned in most HMTL best practice articles and will
-  help meet WCAG success criteria{" "}
-  <ic-link
-    target="_blank"
-    href="https://www.w3.org/WAI/WCAG21/quickref/?versions=2.0&showtechniques=411#parsing"
-    rel="noreferer noopener nofollow"
-  >
-    4.1.1 parsing
-  </ic-link>{" "}
-  in the sufficient technique{" "}
-  <ic-link
-    target="_blank"
-    href="https://www.w3.org/WAI/WCAG21/Techniques/general/G134.html"
-    rel="noreferer noopener nofollow"
-  >
-    G134: validating web pages
-  </ic-link>
-  .
-</p>

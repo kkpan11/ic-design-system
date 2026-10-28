@@ -1,0 +1,45 @@
+.get-started-vertical-cards {
+  display: grid;
+  grid-gap: var(--ic-space-md);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.get-started-horizontal-cards {
+  display: grid;
+  grid-gap: var(--ic-space-md);
+  grid-template: 1fr 1fr / 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.get-started-horizontal-cards ic-card-horizontal svg {
+  fill: none;
+}
+
+.get-started-vertical-cards ic-card-vertical,
+.get-started-vertical-cards ic-card-vertical img {
+  width: 100%;
+  height: 100%;
+}
+
+.ag-theme-icds {
+  height: 500px;
+  width: -webkit-fill-available;
+}
+
+@media screen and (max-width: 992px) {
+  .ag-theme-icds .ag-paging-panel {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .get-started-vertical-cards {
+    grid-template-columns: auto;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .get-started-horizontal-cards {
+    grid-template-columns: auto;
+  }
+}

@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useMemo, useEffect, useState } from "react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import clsx from "clsx";
 
 import "./index.css";
 import AnchorNav from "../../components/AnchorNav";
 import ComponentPreview from "../../components/CodePreview";
+import ComponentTesting from "../../components/ComponentTesting";
 import ComponentGallery from "../../components/ComponentGallery";
 import ComponentDetails from "../../components/ComponentDetails";
 import DoDontCaution from "../../components/DoDontCaution";
 import DoubleDoDontCaution from "../../components/DoubleDoDontCaution";
+import SimpleImage from "../../components/SlottedImage";
 import Header from "../../components/Header";
 import WrappedAlert from "../../components/WrappedAlert";
 import WrappedBlockquote from "../../components/WrappedBlockquote";
@@ -20,6 +22,9 @@ import WrappedH4 from "../../components/WrappedH4";
 import WrappedLi from "../../components/WrappedLi";
 import WrappedLink from "../../components/WrappedLink";
 import WrappedP from "../../components/WrappedP";
+import ThemedVideo from "../../components/ThemedVideo";
+import TypeLibrary from "../../components/TypeLibrary";
+import PageMetadataContext from "../../context/PageMetadata";
 
 const { MDXProvider } = require("@mdx-js/react");
 
@@ -46,11 +51,37 @@ const CoreMDXLayout: React.FC<CoreMDXLayoutProps> = ({
     inlineCode: WrappedCode,
     IcAlert: WrappedAlert,
     ComponentPreview,
+    ComponentTesting,
     ComponentGallery,
+    TypeLibrary,
     blockquote: WrappedBlockquote,
     DoDontCaution,
     DoubleDoDontCaution,
+    SimpleImage,
+    ThemedVideo,
   };
+
+  const pageTitleValue = useMemo(
+    () => ({ pageTitle: mdx.frontmatter.title }),
+    []
+  );
+
+  const [isLargeFont, setIsLargeFont] = useState(false);
+
+  useEffect(() => {
+    const checkFontSize = () => {
+      const bodyFontSize = parseFloat(
+        window.getComputedStyle(document.body).fontSize
+      );
+      if (bodyFontSize > 16) {
+        setIsLargeFont(true);
+      } else {
+        setIsLargeFont(false);
+      }
+    };
+
+    checkFontSize();
+  }, []);
 
   return (
     <MDXProvider components={shortcodes}>
@@ -62,12 +93,26 @@ const CoreMDXLayout: React.FC<CoreMDXLayoutProps> = ({
           tabs={mdx.frontmatter.tabs}
           location={location}
         />
-        <ic-section-container aligned="center" id="page-section-container">
-          <AnchorNav currentPage={mdx.fields.slug} allHeadings={mdx.headings} />
+        <ic-section-container
+          aligned="center"
+          id={
+            isLargeFont
+              ? "page-section-container-large-font"
+              : "page-section-container"
+          }
+        >
+          <AnchorNav
+            currentPage={mdx.fields.slug}
+            allHeadings={mdx.headings}
+            id={isLargeFont ? "anchor-nav-large-font" : ""}
+          />
           <div className="content-container">
-            <MDXRenderer>{children}</MDXRenderer>
+            <PageMetadataContext.Provider value={pageTitleValue}>
+              <MDXRenderer>{children}</MDXRenderer>
+            </PageMetadataContext.Provider>
           </div>
-          {mdx.fields.navSection === "components" && (
+          {(mdx.fields.navSection === "components" ||
+            mdx.fields.navSection === "patterns") && (
             <ic-toast
               id="copy-to-clipboard-toast"
               heading="Copied to clipboard"

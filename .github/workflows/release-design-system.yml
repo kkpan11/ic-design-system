@@ -1,4 +1,5 @@
 name: Release
+permissions: read-all
 
 on:
   pull_request:
@@ -8,19 +9,17 @@ on:
 
 jobs:
   create-pr:
-    if: github.event.pull_request.head.ref == 'check-versions' && github.event.pull_request.merged == true
+    if: github.event.pull_request.head.ref == 'update-roadmap' && github.event.pull_request.merged == true
     name: "Create PR"
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7
         with:
-          node-version: 16
+          node-version: 22
       - uses: browser-actions/setup-chrome@latest
-      - name: Delete check-versions
-        uses: SvanBoxel/delete-merged-branch@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create develop -> main PR
         run: |
           curl -L -X POST -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "X-GitHub-Api-Version: 2022-11-28" "https://api.github.com/repos/mi6/ic-design-system/pulls" -d '{"title":"Develop -> Main","body":"Latest updates with latest package versions","head":"develop","base":"main"}'

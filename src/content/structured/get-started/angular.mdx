@@ -1,13 +1,13 @@
 ---
-path: "/get-started/install-components/angular"
+path: "/get-started/development/install-components/angular"
 
 navPriority: 3
 
-date: "2022-11-15"
+date: "2024-12-23"
 
 title: "Angular"
 
-subTitle: "To use the components follow the relevant framework instructions."
+subTitle: "How to use the components in an Angular-based application."
 
 contribute: "https://github.com/mi6/ic-design-system/tree/main/src/content/structured/get-started/angular.mdx"
 ---
@@ -17,7 +17,7 @@ import { IcAlert } from "@ukic/react";
 <IcAlert
   variant="info"
   heading="Version check"
-  message="These instructions were used with Angular version 13.2.5."
+  message="These instructions were used with Angular version 17.3.0."
 />
 
 ## Step one
@@ -25,30 +25,41 @@ import { IcAlert } from "@ukic/react";
 In the root of your project:
 
 ```shell
-// using npm
+# using npm
 npm install @ukic/web-components @ukic/fonts
 
-// using yarn
+# using yarn
 rm package-lock.json
 yarn add @ukic/web-components @ukic/fonts
 ```
 
 ## Step two
 
-In the `app.modules.ts` file, import the `CUSTOM_ELEMENTS_SCHEMA`.
+Import the `CUSTOM_ELEMENTS_SCHEMA`:
 
-Or for standalone components, import the `CUSTOM_ELEMENTS_SCHEMA` into the `.ts` file of any component using ICDS components.
+### For modules
+
+Into the `app.module.ts` file:
 
 ```jsx
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
 ```
 
-## Step three
+### For standalone components
 
-Then include it in the `@NgModule` decorator object. Or for standalone components, include it in the `@Component` decorator object.
+Into the `app.component.ts` file:
 
 ```jsx
-// Modules
+import { CUSTOM_ELEMENTS_SCHEMA, Component } from "@angular/core";
+```
+
+## Step three
+
+Include `CUSTOM_ELEMENTS_SCHEMA` in the decorator object in the same file:
+
+### For modules
+
+```jsx
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule],
@@ -56,13 +67,17 @@ Then include it in the `@NgModule` decorator object. Or for standalone component
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-// Standalone components
+```
+
+### For standalone components
+
+```jsx
 @Component({
-  selector: 'app-foo',
+  selector: 'app-root',
   standalone: true,
   imports: [],
-  templateUrl: './foo.component.html',
-  styleUrl: './foo.component.scss',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 ```
@@ -73,7 +88,7 @@ Set skipLibCheck to `true` in your `tsconfig.json` file.
 
 ```jsx
 "compilerOptions": {
-  "skipLibCheck": true,
+  "skipLibCheck": true
 },
 ```
 
@@ -108,19 +123,18 @@ Add the following into the top level CSS file for your project. For newly genera
 
 <p>
   In order to be rendered consistently across browsers and in line with modern
-  standards, each of the ICDS components uses styles from a global CSS file
-  based on{" "}
+  standards, each of the components uses styles from a global CSS file based on{" "}
   <ic-link
     target="_blank"
     href="https://necolas.github.io/normalize.css/"
-    rel="noreferer noopener nofollow"
+    rel="noreferrer noopener nofollow"
   >
     Normalize.css
   </ic-link>
   .
 </p>
 
-If you would like to import these styles to apply them to the rest of your project and slotted elements used within any of the ICDS components, add the following into the top level CSS file as well.
+If you would like to import these styles to apply them to the rest of your project and slotted elements used within any of the components, add the following into the top level CSS file as well.
 
 ```css
 @import "@ukic/web-components/dist/core/normalize.css";

@@ -26,7 +26,9 @@ const PropTable: React.FC<PropTableProps> = ({ slotData }) => {
   const data = useMemo(
     () =>
       slotData.map((slot) => ({
-        name: <AttributeName name={["Slot"]} value={[slot.name]} />,
+        name: (
+          <AttributeName name={["Slot"]} value={[slot.name]} key={slot.name} />
+        ),
         description: slot.docs,
       })),
     []
@@ -65,7 +67,7 @@ const PropTable: React.FC<PropTableProps> = ({ slotData }) => {
           <ic-link
             href="https://javascript.info/slots-composition"
             target="_blank"
-            rel="noreferer noopener nofollow"
+            rel="noreferrer noopener nofollow"
           >
             Read more about slots
           </ic-link>

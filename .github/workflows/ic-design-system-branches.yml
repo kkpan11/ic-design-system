@@ -1,10 +1,12 @@
 name: Branches
+permissions: read-all
 
 on:
   workflow_dispatch:
   push:
     branches:
       - "develop"
+      - "v2.0.0/develop"
   pull_request:
     types: [opened, reopened, edited, synchronize]
 
@@ -17,10 +19,10 @@ jobs:
     name: "Static Analysis Tests"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7
         with:
-          node-version: 18
+          node-version: 22
 
       - name: Install dependencies
         run: |
@@ -38,14 +40,16 @@ jobs:
     if: ${{ github.event.pull_request.head.repo.full_name == github.repository || github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
     name: "Deploy"
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7.0.1
         with:
           lfs: true
-      - uses: actions/setup-node@v3
+          persist-credentials: false
+      - uses: actions/setup-node@v7
         with:
-          node-version: 18
-
+          node-version: 22
       - name: Extract branch name
         run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
         id: extract_branch
@@ -53,14 +57,16 @@ jobs:
       - name: Build
         run: |
           BRANCH=${{ steps.extract_branch.outputs.branch }}
-          export ICDS_PREFIX=/branches/$BRANCH
+          export ICDS_PREFIX=/ic-design-system-githubpages/branches/$BRANCH
           npm ci --legacy-peer-deps
-          echo GATSBY_GA_TRACKING_ID=${{ secrets.GA_TRACKING_ID_DEV }} >> .env.production
+          echo GATSBY_MTM_DOMAIN=${{ secrets.GATSBY_MTM_DOMAIN_DEV }} >> .env.production
+          echo GATSBY_MTM_SITE_ID=${{ secrets.GATSBY_MTM_SITE_ID_DEV }} >> .env.production
           echo GATSBY_GOOGLE_SEARCH_TOKEN=${{ secrets.GOOGLE_SEARCH_TOKEN }} >> .env.production
           npm run build:prefixed
 
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: JamesIves/github-pages-deploy-action@fa24774553152dd7873cd16ebd8d959b010c5445 #v4.9.0
+        if: ${{ steps.extract_branch.outputs.branch != 'v2.0.0/main' }}
         with:
           repository-name: mi6/ic-design-system-githubpages
           folder: ./public

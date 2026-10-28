@@ -1,16 +1,16 @@
 ---
-path: "/get-started/install-components"
+path: "/get-started/development/install-components"
 
 navPriority: 1
 
-date: "2024-01-04"
+date: "2024-12-23"
 
-title: "Get the components"
+title: "Install the components"
 
 subTitle: "Install and use the UI Kit component library. Use React or web components to quickly build accessible interfaces."
-
-contribute: "https://github.com/mi6/ic-design-system/tree/main/src/content/structured/get-started/install-components.mdx"
 ---
+
+import { IcAlert } from "@ukic/react";
 
 ## Installing the components
 
@@ -19,7 +19,7 @@ contribute: "https://github.com/mi6/ic-design-system/tree/main/src/content/struc
   <ic-link
     target="_blank"
     href="https://www.npmjs.com/"
-    rel="noreferer noopener nofollow"
+    rel="noreferrer noopener nofollow"
   >
     npmjs.com
   </ic-link>
@@ -27,36 +27,53 @@ contribute: "https://github.com/mi6/ic-design-system/tree/main/src/content/struc
 </p>
 
 ```shell
-// Web components, Angular, Vue, Svelte
+# Web components, Angular, Vue, Svelte
 npm install @ukic/web-components @ukic/fonts
 
-// React
+# React
 npm install @ukic/react @ukic/fonts
 ```
 
 ## Using the components
 
-Web components can be used without the need for a framework. To use web components without a framework, follow the [web components instructions](/get-started/install-components/web-components).
+<IcAlert
+  heading="Components automatically switch colours based on the user's system settings"
+  variant="warning"
+>
+  <ic-typography slot="message">
+    When the ic-theme component is not implemented, components will default to
+    the user's system colour scheme. Please keep this in mind when styling your
+    application. See the{" "}
+    <a href="/components/theme#dark-mode-as-a-theme">theming guidance</a> for
+    more information.
+  </ic-typography>
+</IcAlert>
 
 To use the components in a particular framework, follow the framework instructions.
 
-- [React](/get-started/install-components/react)
-- [Angular](/get-started/install-components/angular)
-- [Vue](/get-started/install-components/vue)
-- [Svelte](/get-started/install-components/svelte)
+- [React](/get-started/development/install-components/react)
+- [Angular](/get-started/development/install-components/angular)
+- [Vue](/get-started/development/install-components/vue)
+- [Svelte](/get-started/development/install-components/svelte)
+- [Gatsby](/get-started/development/install-components/gatsby)
+- [Next.js](/get-started/development/install-components/nextJS)
+
+Web components can be used without the need for a framework. To use web components without a framework, follow the [web components instructions](/get-started/development/install-components/web-components).
 
 <p>
   Custom Elements Everywhere has{" "}
   <ic-link
     target="_blank"
     href="https://custom-elements-everywhere.com"
-    rel="noreferer noopener nofollow"
+    rel="noreferrer noopener nofollow"
   >
     more information on how web components work with other frameworks
   </ic-link>
   .
 </p>
 
-## Using third-party libraries alongside ICDS
+## Using third-party components
 
-If you can't find a suitable component in ICDS, then you can use one from a third-party library in your project. Use that library's theming and customisation options to style the third-party component following the [ICDS styles](/styles) so that they look and feel as similar as possible on the page. Make sure to check for new component releases from ICDS regularly so you can replace the third-party components with ICDS ones when they are released.
+If you can't find a suitable component in this Design System, then you can use one from a third-party library. Use the library's theming and customisation options and follow our [styles](/styles) so that they look and feel as similar as possible.
+
+You can replace the third-party components once they are released in the Design System.

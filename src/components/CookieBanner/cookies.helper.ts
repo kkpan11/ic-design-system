@@ -1,5 +1,7 @@
 // One year
 const EXPIRY_IN_SECONDS = 31104000000;
+// policyDate should mirror the date the policy was last updated, which triggers a new cookie, to force users to re-accept the updated policy
+const policyDate = "2025-06-16";
 
 export const setCookie = (value: string) => {
   if (typeof document !== "undefined") {
@@ -10,20 +12,18 @@ export const setCookie = (value: string) => {
   }
 };
 
-export const consentCookieActioned = () => {
-  if (typeof document !== "undefined") {
-    return document.cookie.indexOf("ICDSPREF") !== -1;
-  }
-  return false;
-};
+export const consentCookieActioned = () =>
+  typeof document !== "undefined"
+    ? document.cookie.indexOf(`ICDSPREF_${policyDate}`) !== -1
+    : false;
 
 export const consentCookieApproved = () =>
-  consentCookieActioned() && document.cookie.indexOf("ICDSPREF=true") !== -1;
+  consentCookieActioned() &&
+  document.cookie.indexOf(`ICDSPREF_${policyDate}=true`) !== -1;
 
-const deleteDomainCookies = () => {
+export const deleteDomainCookies = () => {
   if (typeof window !== "undefined") {
-    const cookies = document.cookie.split("; ");
-    cookies.forEach((cookie) => {
+    document.cookie.split("; ").forEach((cookie) => {
       const d = window.location.hostname.split(".");
       while (d.length > 0) {
         const cookieBase = `${encodeURIComponent(
@@ -43,12 +43,23 @@ const deleteDomainCookies = () => {
   }
 };
 
-export const setConsent = (consent: boolean) => {
-  // treat no consent as 'revoked' and delete existing cookies
+export const deleteLocalStorage = () => {
+  if (typeof window !== "undefined") {
+    localStorage.clear();
+  }
+};
+
+export const setLocalStorageConsent = (consent: boolean) => {
+  if (!consent) {
+    deleteLocalStorage();
+  }
+};
+
+export const setCookieConsent = (consent: boolean) => {
   if (!consent) {
     deleteDomainCookies();
   }
-  setCookie(`ICDSPREF=${consent}`);
+  setCookie(`ICDSPREF_${policyDate}=${consent}`);
 };
 
 export const isBotOrDoNotTrack = () => {
@@ -56,10 +67,7 @@ export const isBotOrDoNotTrack = () => {
 
   // Check if DoNotTrack is activated
   const dnt = navigator.doNotTrack; // || window.doNotTrack;
-  const isToTrack =
-    dnt !== null && dnt !== undefined
-      ? dnt && dnt !== "yes" && dnt !== "1"
-      : true;
+  const isToTrack = dnt ? dnt !== "yes" && dnt !== "1" : true;
 
   return isBot || !isToTrack;
 };

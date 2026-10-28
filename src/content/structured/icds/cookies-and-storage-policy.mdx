@@ -1,0 +1,143 @@
+---
+path: "/icds/cookies-and-storage-policy"
+
+date: "2025-06-16"
+
+title: "Cookies and Storage Policy"
+
+subTitle: "Cookies and Storage Policy for the Intelligence Community Design System."
+---
+
+import InlineCookiesManager from "../../static/components/InlineCookiesManager";
+import CookiesData from "../../static/components/CookiesData";
+
+export const cookiesHeaders = ["Provider", "Domain", "Description", "Cookies"];
+export const essentialCookies = [
+  {
+    provider: "design.sis.gov.uk",
+    domain: "design.sis.gov.uk",
+    description:
+      "Records whether you have acknowledged the cookie notification and your preferences for optional cookies. The date is included in the cookie name to ensure you have accepted the current version of the policy.",
+    cookies: "ICDSPREF_{policyDate}",
+  },
+  {
+    provider: "Cloudflare",
+    domain: ".sis.gov.uk",
+    description:
+      "Used to verify that a user is not a bot and to manage security challenges.",
+    cookies: "__cf_bm, cf_clearance",
+  },
+];
+export const optionalCookies = [
+  {
+    provider: "Matomo (self-hosted)",
+    domain: "design.sis.gov.uk",
+    description:
+      "Used to collect anonymous statistics about how visitors use the site, such as which pages are visited and for how long. No personal data is collected, and analytics data is not used for marketing or shared with third parties.",
+    cookies: "_pk_*, matomo_*, mtm_*",
+  },
+];
+
+export const localStorageHeaders = ["Key", "Description"];
+export const essentialLocalStorage = [
+  {
+    key: "localStorageConsent",
+    description:
+      "Records whether you have enabled local storage for this site.",
+  },
+];
+export const optionalLocalStorage = [
+  {
+    key: "selectedTab",
+    description: "Stores your preferred framework for code previews.",
+  },
+  {
+    key: "selectedLanguage",
+    description:
+      "Stores your preferred programming language for code previews.",
+  },
+  {
+    key: "theme",
+    description: "Stores your theme preference (light or dark).",
+  },
+];
+
+## About cookies and local storage
+
+A cookie is a small file stored on your device when you visit a website. Cookies allow the website to recognise your device and remember your preferences or actions. Cookies can be 'session cookies' (deleted when you close your browser) or 'persistent cookies' (remain until they expire or you delete them).
+
+Local storage is a browser feature that allows websites to store information on your device. This data is persistent and remains after you close your browser.
+
+Cookies and local storage do not usually contain information that personally identifies you. We do not use them to collect or store personal data.
+
+## How we use cookies and local storage
+
+We use cookies and local storage to:
+
+- Remember your cookie and storage preferences.
+- Enable essential site functionality and security.
+- Collect anonymous statistics to help us improve the site.
+
+We do **not** use cookies or local storage to track you across other websites, nor do we share your data with third parties for marketing.
+
+## Summary of cookies and local storage used by this website
+
+### Essential cookies
+
+Essential cookies are required for the website to function and to remember your preferences.
+
+<CookiesData
+  headers={cookiesHeaders}
+  data={essentialCookies}
+  caption="Essential Cookies Table"
+/>
+
+### Essential local storage
+
+Essential local storage is used to remember your consent preferences.
+
+<CookiesData
+  headers={localStorageHeaders}
+  data={essentialLocalStorage}
+  caption="Essential Local Storage Table"
+/>
+
+## Manage your cookie and storage preferences
+
+You can manage your preferences for optional cookies and local storage below.
+
+<InlineCookiesManager />
+
+### Optional cookies
+
+We use optional cookies from a self-hosted Matomo service for analytics. These cookies help us understand how the site is used, so we can improve it. All analytics data is anonymised and not shared with third parties.
+
+<CookiesData
+  headers={cookiesHeaders}
+  data={optionalCookies}
+  caption="Optional Cookies Table"
+/>
+
+### Optional local storage
+
+Optional local storage is used to remember your preferences for code previews and theme.
+
+<CookiesData
+  headers={localStorageHeaders}
+  data={optionalLocalStorage}
+  caption="Local Storage Table"
+/>
+
+## Retention and your rights
+
+We retain analytics and cookie data for up to 15 months, after which it is deleted. You can change your preferences at any time using the controls above, or by clearing cookies and local storage in your browser.
+
+This statement only covers the Design System website at design.sis.gov.uk. This statement does not cover third party websites to which we may link. It does not cover the main SIS website. For information on the cookies used in the main SIS website, please review the <ic-link target="_blank" href="https://www.sis.gov.uk/cookie-and-similar-technologies-policy" rel="noreferrer noopener nofollow">SIS Cookies and Similar Technologies Policy</ic-link>.
+
+## Changes to this notice
+
+We may update this policy from time to time. When we do, we will update the 'last reviewed' date at the bottom of this page. Any changes will apply immediately.
+
+## Contact
+
+If you have any questions about this policy, please [contact us](mailto:icds@gchq.gov.uk).

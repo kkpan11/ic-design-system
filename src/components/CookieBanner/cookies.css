@@ -1,4 +1,4 @@
-.banner {
+#cookie-banner {
   background: var(--ic-architectural-60);
   box-shadow: var(--ic-elevation-modal);
   z-index: var(--ic-z-index-overlay);
@@ -6,6 +6,10 @@
   top: 0;
   width: 100%;
   padding: var(--ic-space-md) 0;
+}
+
+.ic-theme-dark #cookie-banner {
+  background: var(--ic-color-background-primary);
 }
 
 .buttons {

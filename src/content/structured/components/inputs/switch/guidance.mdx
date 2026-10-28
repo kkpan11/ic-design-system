@@ -1,0 +1,217 @@
+---
+path: "/components/inputs/switch"
+
+navPriority: 8
+
+date: "2026-04-28"
+
+title: "Switch"
+
+status: "BETA"
+
+subTitle: "A switch is used to quickly toggle the selection of an option on or off."
+
+contribute: "https://github.com/mi6/ic-design-system/tree/main/src/content/structured/components/inputs/switch"
+
+tabs:
+  [
+    { title: "Guidance", path: "/components/inputs/switch" },
+    { title: "Code", path: "/components/inputs/switch/code" },
+    { title: "Accessibility", path: "/components/inputs/switch/accessibility" },
+  ]
+
+tags: ["Toggle", "Lightswitch"]
+---
+
+import { IcSwitch } from "@ukic/react";
+import switchVid1Light from "./images/anim-1-avoid-change-a-switch-state-from-a-different-trigger.mp4";
+import switchVid1Dark from "./images/anim-1-avoid-change-a-switch-state-from-a-different-trigger-dark.mp4";
+import switchVid2Light from "./images/anim-2-dont-change-switch-label-at-same-time-as-switch-state.mp4";
+import switchVid2Dark from "./images/anim-2-dont-change-switch-label-at-same-time-as-switch-state-dark.mp4";
+import {
+  Fig1SwitchDark,
+  Fig1SwitchLight,
+  Fig2SwitchDark,
+  Fig2SwitchLight,
+  Fig3SwitchDark,
+  Fig3SwitchLight,
+  Fig4SwitchDark,
+  Fig4SwitchLight,
+  Fig5SwitchDark,
+  Fig5SwitchLight,
+  Fig6SwitchDark,
+  Fig6SwitchLight,
+  Fig7SwitchDark,
+  Fig7SwitchLight,
+  Fig8SwitchDark,
+  Fig8SwitchLight,
+  Fig9SwitchDark,
+  Fig9SwitchLight,
+} from "./images";
+
+## Introduction
+
+A switch is an input control that shows a selection status and is commonly used to turn a setting on or off.
+
+## Component demo
+
+<ComponentPreview>
+  <IcSwitch label="Coffee preferences" />
+</ComponentPreview>
+
+## Component variants
+
+### Sizes
+
+The switch has three size variants: small, medium and large.
+
+## When to use
+
+Use switches to turn a single option 'on' or 'off' and when you want the selection to take immediate effect.
+
+Use switches when there is an obvious default value: either 'on' or 'off'.
+
+Use switches in a list if each option is independent of the others.
+
+## When not to use
+
+Don't use a switch when the selection of the option should take effect after a separate trigger such as a submit button. Instead, use a single [checkbox](/components/inputs/checkbox).
+
+<DoubleDoDontCaution>
+  <DoDontCaution
+    imageSrc={[Fig1SwitchLight, Fig1SwitchDark]}
+    imageAlt="An example settings panel with text that says 'Your changes will take place immediately'. Three switches are displayed for 'notifications', 'don't disturb' and 'night mode'."
+    state="good"
+    caption="Make sure the change in a switch's state causes immediate effect."
+  />
+  <DoDontCaution
+    imageSrc={[Fig2SwitchLight, Fig2SwitchDark]}
+    imageAlt="An example settings panel with text that says 'Remember to save your changes'. Three switches are displayed for 'notifications', 'don't disturb' and 'night mode'. A button that says 'Save changes' sits below the switches. "
+    state="bad"
+    caption="Don't use a separate trigger to make the change in state take effect."
+  />
+</DoubleDoDontCaution>
+
+Switches always have a default state: either 'on' or 'off'. Don't use a switch if there is no default setting. Instead, use checkboxes or two [radio buttons](/components/inputs/radio).
+
+Don't use a switch as an input in a form. Use them to instantaneously control a single option.
+
+Don't use a switch for 'yes' or 'no' answers. Use two [radio buttons](/components/inputs/radio) instead.
+
+<DoubleDoDontCaution>
+  <DoDontCaution
+    imageSrc={[Fig3SwitchLight, Fig3SwitchDark]}
+    imageAlt="An example settings panel with a single switch with a heading that says 'Do you want to receive notifications?''. The switch is in the 'on' position and it has a label that says 'Yes'."
+    state="bad"
+    caption="Don't use a switch for 'yes' or 'no' answers."
+  />
+</DoubleDoDontCaution>
+
+## Interaction behaviour
+
+Avoid automatically altering a switch's state based on another trigger. A change in a switch's state should always be the user's decision.
+
+<ThemedVideo
+  width="50%"
+  muted
+  controls
+  loop
+  src={[switchVid1Light, switchVid1Dark]}
+  caption="Avoid changing a switch's state without the user’s specific instruction."
+/>
+
+## Sizing
+
+Use the switch size properties to change its vertical size and achieve compact or spacious layouts.
+
+Don't display switches of different sizes together.
+
+<DoubleDoDontCaution>
+  <DoDontCaution
+    imageSrc={[Fig4SwitchLight, Fig4SwitchDark]}
+    imageAlt="An example settings panel with text that says 'Settings'. Three switches of different sizes are displayed for 'notifications', 'do not disturb' and 'night mode'."
+    state="bad"
+    caption="Don't display switches of different sizes together."
+  />
+</DoubleDoDontCaution>
+
+## Layout and placement
+
+Always display multiple switches in a vertical stack.
+
+<DoubleDoDontCaution>
+  <DoDontCaution
+    imageSrc={[Fig5SwitchLight, Fig5SwitchDark]}
+    imageAlt="An example settings panel with text that says 'Settings'. Three switches are displayed in a vertical stack for 'notifications', 'do not disturb' and 'night mode'."
+    state="good"
+    caption="Always display switches as a stack."
+  />
+  <DoDontCaution
+    imageSrc={[Fig6SwitchLight, Fig6SwitchDark]}
+    imageAlt=" An example settings panel with text that says 'Settings'. Three switches are displayed in a row for 'notifications', 'do not disturb' and 'night mode'."
+    state="bad"
+    caption="Don't display switches in a row."
+  />
+</DoubleDoDontCaution>
+
+## Content
+
+Use clear labels so that it's obvious what the switch will do when in the 'on' or 'off' position. Don't make them neutral or ambiguous. The switch should read 'Label: on' or 'Label: off'.
+
+For example, a switch to turn notifications 'on' or 'off', with a label that says 'Notifications', is understandable when read as 'Notifications: on' and 'Notifications: off'. If the label said 'Turn notifications off', it's ambiguous and more difficult to understand what the 'on' and 'off' position will do.
+
+<DoubleDoDontCaution>
+  <DoDontCaution
+    imageSrc={[Fig7SwitchLight, Fig7SwitchDark]}
+    imageAlt="An example settings panel with a single switch in the 'off' position. Its label says 'Notifications'."
+    state="good"
+    caption="Give switches labels that make it clear what the switch will do in either the 'on' or 'off' position."
+  />
+  <DoDontCaution
+    imageSrc={[Fig8SwitchLight, Fig8SwitchDark]}
+    imageAlt="An example settings panel with a single switch in the 'off' position. Its label says 'Turn notifications off?'."
+    state="bad"
+    caption="Don't give switches ambiguous labels that makes it hard to understand what the switch will do."
+  />
+</DoubleDoDontCaution>
+
+Avoid using additional labels that say 'on' or 'off' in the switch label. The position of the switch describes this itself. Changing the label between state changes makes it difficult to understand the current state.
+
+<ThemedVideo
+  width="50%"
+  muted
+  controls
+  loop
+  src={[switchVid2Light, switchVid2Dark]}
+  caption="Don't change the switch's label at the same time as the state changes."
+  title="An example settings panel with a single switch in the 'off' position. It's label says 'Turn notifications off?'."
+/>
+
+## Icons
+
+Use an icon with a switch label only if a label is present and it aids the recognition of the option.
+
+Don't group switches with icons with other switches without icons.
+
+You can use other Material Design Icons within the component. However, make sure to use icons which are immediately understandable in the given context.
+
+Further guidance on icons is available.
+
+<DoubleDoDontCaution>
+  <DoDontCaution
+    imageSrc={[Fig9SwitchLight, Fig9SwitchDark]}
+    imageAlt="An example settings panel with three switches. The first switch is on with a label that says 'Notifications'. The second switch is off with a label that says 'Do not disturb'. The third switch is off with a label that includes a moon icon and says 'Night mode'."
+    state="bad"
+    caption="Don't mix switches with icons with switches without icons."
+  />
+</DoubleDoDontCaution>
+
+## Motion
+
+A sliding animation is used when the switch component is selected and deselected.
+
+## Related components
+
+- [Checkbox](/components/inputs/checkbox)
+- [Radio button](/components/inputs/radio)
+- [Toggle button](/components/inputs/toggle-buttons)

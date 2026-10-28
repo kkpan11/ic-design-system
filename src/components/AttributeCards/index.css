@@ -1,8 +1,12 @@
 .attribute-cards {
-  border: 1px solid var(--ic-architectural-300);
+  border: 1px solid var(--ic-color-border-neutral-default);
   border-radius: var(--ic-border-radius);
   max-width: 90vw;
   display: none;
+}
+
+.ic-theme-dark .attribute-cards {
+  border: 1px solid var(--ic-color-border-neutral-white);
 }
 
 .attribute-cards-cell {
@@ -20,8 +24,8 @@
   border-bottom: none;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 992px) {
   .attribute-cards {
-    display: block;
+    display: table;
   }
 }

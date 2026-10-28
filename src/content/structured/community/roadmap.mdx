@@ -3,11 +3,11 @@ path: "/community/roadmap"
 
 navPriority: 1
 
-date: "2024-02-02"
+date: "2026-09-21"
 
 title: "Roadmap"
 
-subTitle: "Our roadmap shows the latest work and the work we have planned."
+subTitle: "Our roadmap shows an overview of recent work, current focus and work we have planned."
 
 contribute: "https://github.com/mi6/ic-design-system/tree/main/src/content/structured/community/roadmap.mdx"
 ---
@@ -16,31 +16,53 @@ contribute: "https://github.com/mi6/ic-design-system/tree/main/src/content/struc
 
 The purpose of sharing the roadmap is to give our community an insight into our strategic plan, goals and milestones.
 
-We use our roadmap to communicate plans. Priorities may change because of organisation strategies, or community requirements. We will aim to keep this page up to date.
+Priorities may change because of organisation strategies, or community requirements. We will aim to keep this page up to date.
 
-Check out our [GitHub](https://github.com/orgs/mi6/projects/2/views/1) for a more detailed view of our day-to-day activities and the work completed in our increments.
+We welcome contributions of code, issues raised and more. You can read more about [how to contribute](/community/contribute).
 
-We welcome contributions of code, issues raised and more. Read about [how to contribute](/community/contribute).
+Check out our <ic-link target="_blank" href="https://github.com/orgs/mi6/projects/2/views/1" rel="noreferrer noopener nofollow">GitHub</ic-link> for a more detailed view of our day-to-day activities.
 
-## Recent features and functionality added
+## Recently shipped
 
-- Development of data tables component
-- Research and design the date time component
-- Designed reuseable copy and paste-able patterns
-- Designed table of contents component
+### Components
+
+- Fix highlighted value persisting after escape pressed on ic-search-bar
+- Prevent non icons being slotted into icon slot
+- Restrict html props on ic-menu to safe allowlist
+- Add explicit allowlist and href scheme check to ic-tree-view
+- Notify selection reset on table page change
+- Update innerHTML for typography el in tree item to textContent instead
+
+For a full list of recent component changes made, please read the <ic-link target="_blank" href="https://github.com/mi6/ic-ui-kit/blob/main/packages/web-components/CHANGELOG.md" rel="noreferrer noopener">changelog</ic-link>.
 
 ## Current focus
 
-- Development of the date picker component
-- Development of the multi-selct component
-- Development of the toggle button component
-- Development of the toggle button group component
-- Customisation and theming of colours and components within the library
+### Components
 
-## Upcoming
+- Building IcTimePicker component.
+- Improvements to IcSearchBar.
+- Mature and move existing canary components to Beta.
 
-- Release the multi-select component
-- Release the toggle button component
-- Release the toggle button group component
-- Development of table of contents component
-- The next iteration of data tables component to include filtering functionality
+### Guidance website
+
+- Introduce more code examples for all components.
+- Create a series of patterns that help users creating search pages and using search bars.
+
+## Future
+
+### Components
+
+- Update IcSearchBar to use a standard combobox pattern.
+- Review component behaviour when loading data asynchronously.
+- Improvements to dynamically rendering navigation items in IcSideNavigation.
+- Compatibility of IcTypography with MS Edge "Read Aloud" screen reader.
+
+### Guidance website
+
+- Add guidance information for CSS theme for native tables.
+- Restructure Tokens subsection in Styles.
+- Restructure Guidance and Code subsections for all components.
+- Restructure Patterns section.
+- Consolidate navigation guidance into a single section.
+- Update top navigation to display navigation items in groups.
+- Organise component pages into groups based on component types.

@@ -3,48 +3,91 @@ path: "/get-started"
 
 navPriority: 0
 
-date: "2022-11-15"
+date: "2024-12-06"
 
 title: "Get started"
 
-subTitle: "Use the Design System and UI Kit to create accessible, usable and consistent apps and services for the United Kingdom Intelligence Community."
+subTitle: "Discover a high-quality, accessible UI Kit built for MI6, MI5, GCHQ and HMGCC apps and digital products."
 
 contribute: "https://github.com/mi6/ic-design-system/tree/main/src/content/structured/get-started/index.mdx"
 ---
 
-import { IcCard } from "@ukic/react";
+import GetStartedHorizontalCard from "../../../components/GetStartedHorizontalCard";
+import GetStartedVerticalCard from "../../../components/GetStartedVerticalCard";
+import {
+  Accessibility,
+  AccessibilityDark,
+  Components,
+  ComponentsDark,
+  FigmaUIKit,
+  FigmaUIKitDark,
+  GetStartedDesign,
+  GetStartedDesignDark,
+  GetStartedDevelopment,
+  GetStartedDevelopmentDark,
+  Patterns,
+  PatternsDark,
+} from "./images/card-icons";
+import "./index.css";
 
-## Design System and UI Kit
+## Introduction
 
-- [Accessibility guidance](/accessibility) to design, build and test apps and services that work for everyone.
-- [Style tokens](/styles) to create consistent experiences.
-- [Component guidance](/components) to implement accessible, usable and consistent user interfaces (UI).
-- [Patterns](/patterns) to help users with intuitive experiences for common user tasks.
+Our Design System helps MI6, MI5, GCHQ and HMGCC, our national security partner, to create powerful and accessible capabilities that keep the UK and its partners safe and prosperous.
 
-### For developers
+The Design System has already proven that we can simultaneously speed up and improve the quality of what we build. This means the community and assets we adopt can better serve our fast-changing mission needs and we can be confident in them being accessible.
 
-<IcCard
-  heading="Install the UI Kit components"
-  message="Install and use the UI Kit component library. Use React or web components to quickly build accessible interfaces."
-  href="get-started/install-components"
-  clickable
-  fullWidth
-/>
+<div className="get-started-vertical-cards">
+  <GetStartedVerticalCard
+    imageSrc={[GetStartedDesign, GetStartedDesignDark]}
+    heading="Get started with design"
+    message="Our design documentation empowers you to create intuitive, consistent and accessible designs with ease."
+    href="/get-started/design"
+    imageAlt=""
+  />
+  <GetStartedVerticalCard
+    imageSrc={[GetStartedDevelopment, GetStartedDevelopmentDark]}
+    heading="Get started with development"
+    message="Rapidly build apps using our React and web components."
+    href="/get-started/development"
+    imageAlt=""
+  />
+</div>
 
-### For designers
+## Explore the design system
 
-<IcCard
-  heading="Figma UI Kit"
-  message="Reusable and flexible Figma components used to design, prototype and hand-off designs for apps and digital products."
-  href="get-started/figma"
-  clickable
-  fullWidth
-/>
+Explore the design system to discover our components, guidelines and more.
+
+<div className="get-started-horizontal-cards">
+  <GetStartedHorizontalCard
+    heading="Components"
+    message="Rapidly build apps that work robustly across frameworks."
+    href="/components"
+    imageSrc={[Components, ComponentsDark]}
+    imageAlt=""
+  />
+  <GetStartedHorizontalCard
+    heading="Accessibility"
+    message="Design, build, and test apps and services that work for everyone."
+    href="/accessibility"
+    imageSrc={[Accessibility, AccessibilityDark]}
+    imageAlt=""
+  />
+  <GetStartedHorizontalCard
+    heading="Figma UI kit"
+    message="Reusable and flexible components used to design and prototype."
+    href="/get-started/design/figma"
+    imageSrc={[FigmaUIKit, FigmaUIKitDark]}
+    imageAlt=""
+  />
+  <GetStartedHorizontalCard
+    heading="Patterns"
+    message="Lower learning curves by using intuitive, expandable patterns."
+    href="/patterns"
+    imageSrc={[Patterns, PatternsDark]}
+    imageAlt=""
+  />
+</div>
 
 ## Contribute
 
-We are expanding the UI Kit. You can check out the [roadmap](/community/roadmap) for what's coming. If you would like to help please [read more on how to contribute](/community).
-
-## Using v1.0 component library
-
-You can still use v1.0 (link available for internal users only). Support will be limited and the library deprecated in the future.
+We are expanding the UI Kit. You can check out the [roadmap](/community/roadmap) for what's coming. If you would like to help, please read more on [how to contribute](/community).

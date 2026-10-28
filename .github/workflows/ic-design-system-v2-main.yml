@@ -1,0 +1,58 @@
+name: V2 Deploy
+permissions: read-all
+
+on:
+  push:
+    branches:
+      - v2.0.0/main
+
+jobs:
+  ic-design-system-static-analysis-tests:
+    name: "Static Analysis Tests"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: |
+          npm ci --also=dev
+      - name: Lint site
+        run: |
+          npm run lint
+
+      - name: Audit
+        run: npm run audit
+
+  ic-design-system-deploy:
+    needs: [ic-design-system-static-analysis-tests]
+    concurrency: ci-${{ github.ref }}
+    name: "Deploy"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          lfs: true
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - name: Build
+        run: |
+          export ICDS_PREFIX=/ic-design-system-githubpages/v2  
+          npm ci
+          echo GATSBY_MTM_DOMAIN=${{ secrets.GATSBY_MTM_DOMAIN_DEV }} >> .env.production
+          echo GATSBY_MTM_SITE_ID=${{ secrets.GATSBY_MTM_SITE_ID_DEV }} >> .env.production
+          echo GATSBY_GOOGLE_SEARCH_TOKEN=${{ secrets.GOOGLE_SEARCH_TOKEN }} >> .env.production
+          npm run build:v2-prefixed
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@fa24774553152dd7873cd16ebd8d959b010c5445 #v4.9.0
+        with:
+          repository-name: mi6/ic-design-system-githubpages
+          folder: ./public
+          target-folder: ./v2
+          token: ${{ secrets.IC_DESIGN_SYSTEM_QA }}

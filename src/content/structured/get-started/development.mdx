@@ -1,0 +1,93 @@
+---
+path: "/get-started/development"
+
+navPriority: 2
+
+date: "2024-12-16"
+
+title: "Development"
+
+subTitle: "Our UI Kit is built with Stencil.js to ensure seamless integration across React, Vue, Angular, and other frameworks."
+
+contribute: "https://github.com/mi6/ic-design-system/tree/main/src/content/structured/get-started/development.mdx"
+---
+
+import GetStartedHorizontalCard from "../../../components/GetStartedHorizontalCard";
+import GetStartedVerticalCard from "../../../components/GetStartedVerticalCard";
+import "./index.css";
+import {
+  Accessibility,
+  AccessibilityDark,
+  Components,
+  ComponentsDark,
+  CustomTheme,
+  CustomThemeDark,
+  InstallComponents,
+  InstallComponentsDark,
+  Releases,
+  ReleasesDark,
+  TestingComponents,
+  TestingComponentsDark,
+} from "./images/card-icons";
+
+## Installing the components
+
+The development library provides a robust set of UI components that are not only high-quality and visually appealing but also thoroughly tested for reliability and performance.
+
+With a focus on accessibility and ease of use, these components empower developers to create responsive and inclusive experiences.
+
+<div className="get-started-vertical-cards">
+  <GetStartedVerticalCard
+    heading="Install the components"
+    message="Install and use the UI Kit component library. Use React or web components to quickly build accessible interfaces."
+    href="/get-started/development/install-components"
+    imageSrc={[InstallComponents, InstallComponentsDark]}
+    imageAlt=""
+  />
+  <GetStartedVerticalCard
+    heading="Test the components"
+    message="Test the UI Kit components within the shadow DOM using a testing framework."
+    href="/get-started/development/test-components"
+    imageSrc={[TestingComponents, TestingComponentsDark]}
+    imageAlt=""
+  />
+</div>
+
+## Explore the design system
+
+Explore the design system to discover our components, guidelines and more.
+
+<div className="get-started-horizontal-cards">
+  <GetStartedHorizontalCard
+    heading="Components"
+    message="Rapidly build apps that work robustly across frameworks."
+    href="/components"
+    imageSrc={[Components, ComponentsDark]}
+    imageAlt=""
+  />
+  <GetStartedHorizontalCard
+    heading="Accessibility"
+    message="Design, build, and test apps and services that work for everyone. "
+    href="/accessibility"
+    imageSrc={[Accessibility, AccessibilityDark]}
+    imageAlt=""
+  />
+  <GetStartedHorizontalCard
+    heading="Custom themes"
+    message="How to change the appearance of some components."
+    href="/components/theme"
+    imageSrc={[CustomTheme, CustomThemeDark]}
+    imageAlt=""
+  />
+  <GetStartedHorizontalCard
+    heading="Releases"
+    message="Our approach to releases and versioning."
+    href="/get-started/releases-versions"
+    imageSrc={[Releases, ReleasesDark]}
+    alt=""
+  />
+</div>
+
+## Contribute
+
+We are expanding the UI Kit. You can check out the [roadmap](/community/roadmap) for what's coming. If you would like to help, please read more on [how to contribute](/community).

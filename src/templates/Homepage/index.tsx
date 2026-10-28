@@ -1,17 +1,27 @@
 import React from "react";
 import clsx from "clsx";
-import { Link as GatsbyLink, withPrefix } from "gatsby";
+import { Link as GatsbyLink } from "gatsby";
 import Icon from "@mdi/react";
+import { mdiArrowRight } from "@mdi/js";
+import { IcButtonVariants } from "@ukic/web-components";
+import icdsHero from "../../../static/icds-hero.png";
+import backgroundImage from "../../../static/background-image.png";
+import backgroundImageDarkMode from "../../../static/background-image-dark-mode.png";
 import {
-  mdiHumanHandsup,
-  mdiPaletteSwatch,
-  mdiPuzzle,
-  mdiViewDashboard,
-  mdiArrowRight,
-} from "@mdi/js";
-import icdsHero from "../../../static/icds-hero.jpg";
+  Accessibility,
+  AccessibilityDark,
+  Components,
+  ComponentsDark,
+  Patterns,
+  PatternsDark,
+  Styles,
+  StylesDark,
+} from "../../content/structured/get-started/images/card-icons";
+import { DesignImage, DevImage } from "../../assets/svg";
 
 import "./index.css";
+import { useViewportWidth } from "../../utils/helpers";
+import { useTheme } from "../../context/ThemeContext";
 
 const { homepage } = require("../../config");
 
@@ -19,35 +29,54 @@ interface homepageCardItem {
   description: string;
   path: string;
   title: string;
-  icon: string;
 }
 
 const Homepage: React.FC = () => {
-  const renderIcon = (icon: string) => {
-    switch (icon) {
-      case "AccessibilityIcon":
+  const { theme } = useTheme();
+
+  const renderImage = (image: string) => {
+    if (useViewportWidth() < 577) return null;
+
+    switch (image) {
+      case "Accessibility":
         return (
-          <span slot="icon">
-            <Icon path={mdiHumanHandsup} size={1} className="card-icon" />
-          </span>
+          <img
+            src={theme === "light" ? Accessibility : AccessibilityDark}
+            alt=""
+            loading="lazy"
+            slot="image-left"
+            aria-hidden="true"
+          />
         );
-      case "StyleOutlinedIcon":
+      case "Styles":
         return (
-          <span slot="icon">
-            <Icon path={mdiPaletteSwatch} size={1} className="card-icon" />
-          </span>
+          <img
+            src={theme === "light" ? Styles : StylesDark}
+            alt=""
+            loading="lazy"
+            slot="image-left"
+            aria-hidden="true"
+          />
         );
-      case "ExtensionOutlinedIcon":
+      case "Components":
         return (
-          <span slot="icon">
-            <Icon path={mdiPuzzle} size={1} className="card-icon" />
-          </span>
+          <img
+            src={theme === "light" ? Components : ComponentsDark}
+            alt=""
+            loading="lazy"
+            slot="image-left"
+            aria-hidden="true"
+          />
         );
-      case "DashboardOutlinedIcon":
+      case "Patterns":
         return (
-          <span slot="icon">
-            <Icon path={mdiViewDashboard} size={1} className="card-icon" />
-          </span>
+          <img
+            src={theme === "light" ? Patterns : PatternsDark}
+            alt=""
+            loading="lazy"
+            slot="image-left"
+            aria-hidden="true"
+          />
         );
       default:
         return null;
@@ -61,8 +90,14 @@ const Homepage: React.FC = () => {
         subheading={homepage.hero.text}
         aligned="center"
         background-image={icdsHero}
+        disable-background-parallax="true"
       >
-        <ic-link appearance="light" slot="interaction" id="get-started-link">
+        <ic-link
+          theme="dark"
+          monochrome
+          slot="interaction"
+          id="get-started-link"
+        >
           <GatsbyLink slot="router-item" to="/get-started">
             <ic-typography variant="h4">
               Get started
@@ -75,96 +110,177 @@ const Homepage: React.FC = () => {
           </GatsbyLink>
         </ic-link>
       </ic-hero>
-      <ic-section-container aligned="center" full-height>
+      <ic-section-container aligned="center" full-height="true">
+        <div className="section">
+          <ic-alert
+            heading="Not what you were expecting?"
+            message="v3.0 is now live, featuring dark mode and new components. Start experimenting now! If you'd prefer, you can still access our v2.0 site."
+            variant="info"
+          >
+            <ic-link
+              slot="action"
+              monochrome
+              href="https://mi6.github.io/ic-design-system-githubpages/v2"
+              target="_blank"
+              rel="noreferer noopener nofollow"
+            >
+              Go to v2.0
+            </ic-link>
+          </ic-alert>
+        </div>
         <div className="section">
           <ul className={clsx("cards-container", "explore-cards")}>
-            {homepage.cards.content &&
-              homepage.cards.content.map((item: homepageCardItem) => (
-                <li>
-                  <GatsbyLink to={item.path}>
-                    <ic-card message={item.description} full-width>
-                      <ic-typography
-                        slot="heading"
-                        variant="h4"
-                        aria-label={`${item.title}.`}
-                      >
-                        <h4>{item.title}</h4>
-                      </ic-typography>
-                      {renderIcon(item.icon)}
-                    </ic-card>
-                  </GatsbyLink>
-                </li>
-              ))}
+            {homepage.cards.content?.map((item: homepageCardItem) => (
+              <li key={item.title}>
+                <GatsbyLink to={item.path}>
+                  <ic-card-horizontal>
+                    <ic-typography
+                      slot="heading"
+                      variant="h4"
+                      aria-label={`${item.title}.`}
+                    >
+                      <p>{item.title}</p>
+                    </ic-typography>
+                    <ic-typography
+                      slot="message"
+                      variant="body"
+                      aria-label={`${item.description}.`}
+                    >
+                      <p>{item.description}</p>
+                    </ic-typography>
+                    {renderImage(item.title)}
+                  </ic-card-horizontal>
+                </GatsbyLink>
+              </li>
+            ))}
           </ul>
         </div>
-        <hr aria-hidden="true" className="divider" />
         <div className="section">
-          <ic-typography variant="h2" apply-vertical-margins>
+          <ic-typography variant="h2" apply-vertical-margins="true">
             {homepage.about.title}
           </ic-typography>
-          {homepage.about.content.map((text: string) => (
+          {homepage.about.content.map((text: string, index: number) => (
             <ic-typography
               variant="body"
               data-class="text-content"
-              apply-vertical-margins
+              apply-vertical-margins="true"
+              // eslint-disable-next-line react/no-array-index-key
+              key={index}
             >
               {text}
             </ic-typography>
           ))}
-          <ic-typography variant="body">
-            <ic-link href={withPrefix(homepage.about.link)}>
-              {homepage.about.linkText}.
-            </ic-link>
-          </ic-typography>
+          <ic-button>
+            <GatsbyLink slot="router-item" to={homepage.about.link}>
+              {homepage.about.buttonText}
+            </GatsbyLink>
+          </ic-button>
         </div>
         <hr aria-hidden="true" className="divider" />
-        <div className="section">
-          <ic-typography variant="h2" apply-vertical-margins>
-            <h2>{homepage.contribute.title}</h2>
-          </ic-typography>
-          {homepage.contribute.content.map((text: string) => (
-            <ic-typography
-              variant="body"
-              data-class="text-content"
-              apply-vertical-margins
-            >
-              {text}
+        <div className={clsx("section", "display-row")}>
+          <div>
+            <ic-typography variant="h2" apply-vertical-margins="true">
+              {homepage.design.title}
             </ic-typography>
-          ))}
-          <ic-typography variant="body">
-            <ic-link href={withPrefix(homepage.contribute.link)}>
-              {homepage.contribute.linkText}.
-            </ic-link>
-          </ic-typography>
+            {homepage.design.content.map((text: string, index: number) => (
+              <ic-typography
+                variant="body"
+                data-class="text-content"
+                apply-vertical-margins="true"
+                // eslint-disable-next-line react/no-array-index-key
+                key={index}
+              >
+                {text}
+              </ic-typography>
+            ))}
+            <div className="homepage-button-container">
+              {homepage.design.button.map(
+                (button: {
+                  href: string;
+                  text: string;
+                  variant: IcButtonVariants;
+                }) => (
+                  <ic-button variant={button.variant}>
+                    <GatsbyLink slot="router-item" to={button.href}>
+                      {button.text}
+                    </GatsbyLink>
+                  </ic-button>
+                )
+              )}
+            </div>
+          </div>
+          <div>
+            <DesignImage className="design-image" />
+          </div>
         </div>
         <hr aria-hidden="true" className="divider" />
-        <div className="section">
-          <ic-typography variant="h2" apply-vertical-margins>
-            {homepage.resources.title}
-          </ic-typography>
-          {homepage.resources.content.map((text: string[]) => (
-            <ic-typography
-              variant="body"
-              data-class="text-content"
-              apply-vertical-margins
-            >
-              {text}
+        <div className={clsx("section", "display-row")}>
+          <div>
+            <DevImage className="dev-image" />
+          </div>
+          <div>
+            <ic-typography variant="h2" apply-vertical-margins="true">
+              {homepage.develop.title}
             </ic-typography>
-          ))}
-          <ul className={clsx("cards-container", "resources-cards")}>
-            {homepage.resources.cards &&
-              homepage.resources.cards.map((item: homepageCardItem) => (
-                <li>
-                  <GatsbyLink to={item.path}>
-                    <ic-card
-                      heading={item.title}
-                      message={item.description}
-                      full-width
-                    />
-                  </GatsbyLink>
-                </li>
-              ))}
-          </ul>
+            {homepage.develop.content.map((text: string, index: number) => (
+              <ic-typography
+                variant="body"
+                data-class="text-content"
+                apply-vertical-margins="true"
+                // eslint-disable-next-line react/no-array-index-key
+                key={index}
+              >
+                {text}
+              </ic-typography>
+            ))}
+            <div className="homepage-button-container">
+              {homepage.develop.button.map(
+                (button: {
+                  href: string;
+                  text: string;
+                  variant: IcButtonVariants;
+                }) => (
+                  <ic-button variant={button.variant}>
+                    <GatsbyLink slot="router-item" to={button.href}>
+                      {button.text}
+                    </GatsbyLink>
+                  </ic-button>
+                )
+              )}
+            </div>
+          </div>
+        </div>
+        <hr aria-hidden="true" className="divider" />
+        <div
+          style={{
+            backgroundImage: `url( ${
+              theme === "light" ? backgroundImage : backgroundImageDarkMode
+            } )`,
+            backgroundPosition: "center",
+            backgroundSize: "contain",
+          }}
+        >
+          <div className={clsx("section", "with-background-image")}>
+            <ic-typography variant="h2" apply-vertical-margins="true">
+              <h2>{homepage.contribute.title}</h2>
+            </ic-typography>
+            {homepage.contribute.content.map((text: string, index: number) => (
+              <ic-typography
+                variant="body"
+                data-class="text-content"
+                apply-vertical-margins="true"
+                // eslint-disable-next-line react/no-array-index-key
+                key={index}
+              >
+                {text}
+              </ic-typography>
+            ))}
+            <ic-button>
+              <GatsbyLink slot="router-item" to={homepage.contribute.link}>
+                {homepage.contribute.buttonText}
+              </GatsbyLink>
+            </ic-button>
+          </div>
         </div>
       </ic-section-container>
     </div>

@@ -1,8 +1,17 @@
+# Contributing Notice
+
+Thank you for your interest in this project. We have temporarily paused external contributions. During this pause, repository interactions are restricted to existing collaborators, so other users cannot open issues, submit pull requests or comment. 
+
+We appreciate your understanding and the contributions the community has made. We will update this guidance as soon as the position changes.
+
+----
+
+
 # Contributing to the Intelligence Community Design System guidance site
 
 Welcome and thank you for contributing to the [Intelligence Community Design System guidance site](https://design.sis.gov.uk/). This guide will take you through the technical considerations for contributing.
 
-**Table of contents**
+## Table of contents
 
 - [Code of conduct](#code-of-conduct)
 
@@ -16,8 +25,9 @@ Welcome and thank you for contributing to the [Intelligence Community Design Sys
 - [Coding standards and practices](#coding-standards-and-practices)
 
   - [Accessibility](#accessibility)
-  - [Style guide](#styleguide)
+  - [Style guide](#style-guide)
   - [Git commit](#git-commit)
+  - [Amending a commit](#amending-a-commit)
   - [Styling](#styling)
 
 - [Testing](#testing)
@@ -26,7 +36,7 @@ Welcome and thank you for contributing to the [Intelligence Community Design Sys
 
 ## Code of conduct
 
-The Intelligence Community Design System (ICDS) has adopted the [Contributor Covenant](https://www.contributor-covenant.org/). Please familiarise yourself with our full [conduct principles](/CODE_OF_CONDUCT).
+The Intelligence Community Design System (ICDS) has adopted the [Contributor Covenant](https://www.contributor-covenant.org/). Please familiarise yourself with our full [conduct principles](/CODE_OF_CONDUCT.md).
 
 ## How to contribute
 
@@ -52,26 +62,25 @@ If you would like to contribute code, please complete the following steps:
 1. Fork the [Design System guidance site repository](https://github.com/mi6/ic-design-system) and clone your forked repo onto your device.
 2. Make sure to add the `mi6/ic-design-system` repo as your upstream remote branch, by running:
 
-```
+```bash
 git remote add upstream git@github.com:mi6/ic-design-system.git
 ```
 
 3. Create a new branch in your forked repo, named after the issue number of your contribution (e.g. feature/123-new-feature).
-
 4. Run the following:
 
 **NPM**
 
-```
+```bash
 npm install --legacy-peer-deps
 npm start
 ```
 
 **Yarn**
 
-```
+```bash
 rm package-lock.json
-yarn install --legacy-peer-deps
+yarn install
 yarn run start
 ```
 
@@ -100,7 +109,7 @@ Pull requests must have the approval of 2 reviewers before they can be merged in
 
 ### Accessibility
 
-All changes must meet the criteria for [WCAG 2.1 AA](https://design.sis.gov.uk/accessibility/requirement/wcag). Find out more about the importance of [accessibility](https://design.sis.gov.uk/accessibility).
+All changes must meet the criteria for [WCAG 2.2 AA](https://design.sis.gov.uk/accessibility/requirement/wcag). Find out more about the importance of [accessibility](https://design.sis.gov.uk/accessibility).
 
 ### Style guide
 
@@ -153,6 +162,48 @@ Follow these steps when making a commit:
 7. If there are breaking changes enter `y` and provide a description.
 8. Provide a link to the issue by entering the reference e.g. `#123`.
 9. When the editor opens up, check your commit message and press `Ctrl`+`x` to confirm.
+
+### Amending a commit
+
+If you need to make changes to a commit (for example, after receiving comments on a PR), follow these steps:
+
+1. **If you're amending the most recent commit:**
+
+   - Stage your changes using `git add` and include the files you want to update.
+   - Run `git commit --amend --no-edit` to amend the most recent commit without changing the commit message.
+   - The Commitizen prompt will still appear as if you are making a new commit. Exit the prompt (usually by pressing Ctrl+C).
+   - Push the changes to the remote repository using: `git push --force`.
+
+2. **If you're amending an older commit:**
+
+   - Use `git rebase` to modify an older commit. For example, to modify commit `a1312407`, run:
+
+     ```sh
+     git rebase --interactive a1312407
+     ```
+
+   - In the default editor, change `pick` to `edit` for the line mentioning `a1312407`.
+
+   - Save the file and exit. Git will interpret and automatically execute the commands in the file, placing you in the state just after creating commit `a1312407`.
+
+   - Amend the commit by making your changes and then running:
+
+     ```sh
+     git commit --all --amend --no-edit
+     ```
+
+   - The Commitizen prompt will still appear as if you are making a new commit. Exit the prompt (usually by pressing Ctrl+C).
+
+   - Continue the rebase process by running:
+
+     ```sh
+     git rebase --continue
+     ```
+
+   - Push the changes to the remote repository using:
+     ```sh
+     git push --force
+     ```
 
 ### Styling
 

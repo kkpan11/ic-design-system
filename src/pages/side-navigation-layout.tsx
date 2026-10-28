@@ -5,6 +5,7 @@ import { SlottedSVG } from "@ukic/react";
 const SideNavigationLayout: React.FC<PageProps> = () => (
   <div id="side-nav-example-root">
     <div style={{ display: "flex", height: "100%" }}>
+      <ic-skip-link target="main" />
       <ic-side-navigation
         app-title="ACME coffee shop"
         version="v0.0.7"
@@ -84,7 +85,7 @@ const SideNavigationLayout: React.FC<PageProps> = () => (
           flexGrow: "1",
         }}
       >
-        <main style={{ height: "100vh" }}>
+        <main id="main" style={{ height: "100vh" }}>
           <ic-section-container>
             <ic-typography>
               <p>
@@ -114,8 +115,7 @@ const SideNavigationLayout: React.FC<PageProps> = () => (
           </ic-section-container>
         </main>
         <ic-footer
-          description="The ICDS is maintained by the Design Practice Team. If you've got a question or want to feedback,
-              please get in touch."
+          description="The UK Intelligence Community Design System (ICDS) is a joint project by MI6, MI5, GCHQ, and HMGCC, our national security partner, along with other collaborators."
           caption="All content is available under the Open Government Licence v3.0, except source code and code examples which are available under the MIT Licence."
         >
           <ic-footer-link slot="link" href="/">

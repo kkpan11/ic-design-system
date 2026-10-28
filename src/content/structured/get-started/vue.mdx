@@ -1,13 +1,13 @@
 ---
-path: "/get-started/install-components/vue"
+path: "/get-started/development/install-components/vue"
 
 navPriority: 4
 
-date: "2022-11-15"
+date: "2024-12-23"
 
 title: "Vue"
 
-subTitle: "To use the components follow the relevant framework instructions."
+subTitle: "How to use the components in a Vue-based application."
 
 contribute: "https://github.com/mi6/ic-design-system/tree/main/src/content/structured/get-started/vue.mdx"
 ---
@@ -17,7 +17,7 @@ import { IcAlert } from "@ukic/react";
 <IcAlert
   variant="info"
   heading="Version check"
-  message="These instructions were used with Vue version 3.2.31."
+  message="These instructions were used with Vue version 3.5.13."
 />
 
 ## Step one
@@ -25,29 +25,31 @@ import { IcAlert } from "@ukic/react";
 In the root of your project:
 
 ```shell
-// using npm
+# using npm
 npm install @ukic/web-components @ukic/fonts
 
-// using yarn
+# using yarn
 rm package-lock.json
 yarn add @ukic/web-components @ukic/fonts
 ```
 
 ## Step two
 
-Add options into your relevant config.
+Add the necessary options to your relevant configuration:
 
 ### In-Browser config
 
+This only works if using in-browser compilation.
+
 ```jsx
-// Only works if using in-browser compilation.
-app.config.compilerOptions.isCustomElement = (tag) => tag.includes("-");
+app.config.compilerOptions.isCustomElement = (tag) => tag.startsWith("ic-");
 ```
 
 ### Vite config
 
+Add the following to your `vite.config.js`:
+
 ```jsx
-// vite.config.js
 import vue from "@vitejs/plugin-vue";
 
 export default {
@@ -55,8 +57,8 @@ export default {
     vue({
       template: {
         compilerOptions: {
-          // treat all tags with a dash as custom elements
-          isCustomElement: (tag) => tag.includes("-"),
+          // treat any tag that starts with ic- as a custom element
+          isCustomElement: (tag) => tag.startsWith("ic-"),
         },
       },
     }),
@@ -66,8 +68,9 @@ export default {
 
 ### Vue CLI config
 
+Add the following to your `vue.config.js`:
+
 ```jsx
-// vue.config.js
 module.exports = {
   chainWebpack: (config) => {
     config.module
@@ -76,7 +79,7 @@ module.exports = {
       .tap((options) => ({
         ...options,
         compilerOptions: {
-          // treat any tag that starts with ic- as custom elements
+          // treat any tag that starts with ic- as a custom element
           isCustomElement: (tag) => tag.startsWith("ic-"),
         },
       }));
@@ -115,19 +118,18 @@ Add the following into the top level CSS file for your project.
 
 <p>
   In order to be rendered consistently across browsers and in line with modern
-  standards, each of the ICDS components uses styles from a global CSS file
-  based on{" "}
+  standards, each of the components uses styles from a global CSS file based on{" "}
   <ic-link
     target="_blank"
     href="https://necolas.github.io/normalize.css/"
-    rel="noreferer noopener nofollow"
+    rel="noreferrer noopener nofollow"
   >
     Normalize.css
   </ic-link>
   .
 </p>
 
-If you would like to import these styles to apply them to the rest of your project and slotted elements used within any of the ICDS components, add the following into the top level CSS file as well.
+If you would like to import these styles to apply them to the rest of your project and slotted elements used within any of the components, add the following into the top level CSS file as well.
 
 ```css
 @import "@ukic/web-components/dist/core/normalize.css";

@@ -1,0 +1,10 @@
+export { default as Fig1DatePickerLight } from "./fig1-use-date-picker-to-visualise-dates.png";
+export { default as Fig1DatePickerDark } from "./fig1-use-date-picker-to-visualise-dates-dark.png";
+export { default as Fig2DatePickerLight } from "./fig2-avoid-using-for-distant-dates.png";
+export { default as Fig2DatePickerDark } from "./fig2-avoid-using-for-distant-dates-dark.png";
+export { default as Fig3DatePickerLight } from "./fig3-custom-width.png";
+export { default as Fig3DatePickerDark } from "./fig3-custom-width-dark.png";
+export { default as Fig4DatePickerLight } from "./fig4-date-picker-anatomy.png";
+export { default as Fig4DatePickerDark } from "./fig4-date-picker-anatomy-dark.png";
+export { default as Fig5DatePickerLight } from "./fig5-date-picker.png";
+export { default as Fig5DatePickerDark } from "./fig5-date-picker-dark.png";

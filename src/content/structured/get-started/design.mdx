@@ -1,0 +1,93 @@
+---
+path: "/get-started/design"
+
+navPriority: 1
+
+date: "2024-12-16"
+
+title: "Design"
+
+subTitle: "Our design assets and guidance enables you to design and prototype apps and digital products."
+
+contribute: "https://github.com/mi6/ic-design-system/tree/main/src/content/structured/get-started/design.mdx"
+---
+
+import GetStartedHorizontalCard from "../../../components/GetStartedHorizontalCard";
+import GetStartedVerticalCard from "../../../components/GetStartedVerticalCard";
+import "./index.css";
+import {
+  ContentStyles,
+  ContentStylesDark,
+  DesigningForAccessibility,
+  DesigningForAccessibilityDark,
+  DesignPrinciples,
+  DesignPrinciplesDark,
+  GetTheFigmaUIKit,
+  GetTheFigmaUIKitDark,
+  Patterns,
+  PatternsDark,
+  Styles,
+  StylesDark,
+} from "./images/card-icons";
+
+## Installing the components
+
+Whether you're building a new interface or refining an existing one, our Figma UI Kit, principles and documentation empowers you to create intuitive, consistent and accessible designs with ease.
+
+We’ve put a lot of effort into the atomic design components (such as typography and buttons) to instil confidence in the control of our ecosystem as we learn more about the vast use cases we encounter.
+
+<div className="get-started-vertical-cards">
+  <GetStartedVerticalCard
+    heading="Get the Figma UI Kit"
+    message="Reusable and flexible Figma components used to design and prototype."
+    href="/get-started/design/figma"
+    imageSrc={[GetTheFigmaUIKit, GetTheFigmaUIKitDark]}
+    imageAlt=""
+  />
+  <GetStartedVerticalCard
+    heading="Designing for accessibility"
+    message="Best practices for designing inclusive experiences."
+    href="/accessibility/needs/general"
+    imageSrc={[DesigningForAccessibility, DesigningForAccessibilityDark]}
+    imageAlt=""
+  />
+</div>
+
+## Explore the design system
+
+Explore the design system to discover our components, guidelines and more.
+
+<div className="get-started-horizontal-cards">
+  <GetStartedHorizontalCard
+    heading="Styles"
+    message="Create consistent experiences across diverse touchpoints."
+    href="/styles"
+    imageSrc={[Styles, StylesDark]}
+    imageAlt=""
+  />
+  <GetStartedHorizontalCard
+    heading="Principles"
+    message="Design principles that drive our ways of working."
+    href="/get-started/design/design-principles"
+    imageSrc={[DesignPrinciples, DesignPrinciplesDark]}
+    imageAlt=""
+  />
+  <GetStartedHorizontalCard
+    heading="Content styles"
+    message="Guidelines for inclusive reading and interaction."
+    href="/styles/content-style"
+    imageSrc={[ContentStyles, ContentStylesDark]}
+    imageAlt=""
+  />
+  <GetStartedHorizontalCard
+    heading="Patterns"
+    message="Lower learning curves by using intuitive, expandable patterns. "
+    href="/patterns"
+    imageSrc={[Patterns, PatternsDark]}
+    imageAlt=""
+  />
+</div>
+
+## Contribute
+
+We are expanding the UI Kit. You can check out the [roadmap](/community/roadmap) for what's coming. If you would like to help, please read more on [how to contribute](/community).

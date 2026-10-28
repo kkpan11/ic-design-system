@@ -1,4 +1,5 @@
 name: Main
+permissions: read-all
 
 on:
   push:
@@ -10,14 +11,14 @@ jobs:
     name: "Static Analysis Tests"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7
         with:
-          node-version: 16
+          node-version: 22
 
       - name: Install dependencies
         run: |
-          npm ci --legacy-peer-deps --also=dev
+          npm ci --also=dev --legacy-peer-deps
       - name: Lint site
         run: |
           npm run lint
@@ -30,22 +31,25 @@ jobs:
     concurrency: ci-${{ github.ref }}
     name: "Deploy"
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7.0.1
         with:
           lfs: true
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v7
         with:
-          node-version: 16
+          node-version: 22
       - name: Build
         run: |
           npm ci --legacy-peer-deps
-          echo GATSBY_GA_TRACKING_ID=${{ secrets.GA_TRACKING_ID_PROD }} >> .env.production
+          echo GATSBY_MTM_DOMAIN=${{ secrets.GATSBY_MTM_DOMAIN_PROD }} >> .env.production
+          echo GATSBY_MTM_SITE_ID=${{ secrets.GATSBY_MTM_SITE_ID_PROD }} >> .env.production
           echo GATSBY_GOOGLE_SEARCH_TOKEN=${{ secrets.GOOGLE_SEARCH_TOKEN }} >> .env.production
           npm run build
 
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: JamesIves/github-pages-deploy-action@fa24774553152dd7873cd16ebd8d959b010c5445 #v4.9.0
         with:
           folder: ./public
           target-folder: ./docs

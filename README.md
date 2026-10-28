@@ -7,15 +7,32 @@
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mi6/ic-design-system/tree/main/LICENSE)
 
-The [Intelligence Community Design System](https://design.sis.gov.uk) helps the United Kingdom's Intelligence Community (MI6, GCHQ, MI5, and partners) to quickly build powerful capabilities that are accessible and easy to use.
+The [Intelligence Community Design System](https://design.sis.gov.uk) helps the United Kingdom's Intelligence Community (MI6, GCHQ, MI5, and HMGCC, our national security partner, and additional partners) to quickly build powerful capabilities that are accessible and easy to use.
 
-This is a joint project led by [MI6](https://www.sis.gov.uk), working with [GCHQ](https://www.gchq.gov.uk) and [MI5](https://www.mi5.gov.uk).
+This is a joint project led by [MI6](https://www.sis.gov.uk), working with [GCHQ](https://www.gchq.gov.uk), [MI5](https://www.mi5.gov.uk) and [HMGCC](https://www.hmgcc.gov.uk) (our national security partner).
 
 <p align="center">
-  <img src="/static/icds-orgs.png" alt="SIS (MI6), GCHQ and MI5 Logos" loading="lazy">
+  <img src="/static/icds-orgs.png" alt="SIS (MI6), GCHQ, MI5 and HMGCC logos" loading="lazy">
 </p>
 
 This repo holds the website at [`design.sis.gov.uk`](https://design.sis.gov.uk), look at the [`ic-ui-kit` repo](https://github.com/mi6/ic-ui-kit) for the ICDS UI Kit components.
+
+```mermaid
+---
+title: ICDS repository and publication architecture
+---
+graph LR
+    A["mi6/ic-design-system<br/>Gatsby + MDX"]
+    B["mi6/ic-ui-kit<br/>Web Components + framework wrappers"]
+    C["design.sis.gov.uk<br/>Guidance and documentation"]
+    D["@ukic/* npm packages<br/>UI components"]
+
+    A -->|publishes| C
+    B -->|publishes| D
+    C -.documents usage of.-> D
+```
+
+The website and component library are maintained in separate repositories: use this repository for guidance and documentation changes, and `ic-ui-kit` for component implementation and package changes.
 
 ## Why we're doing this
 
@@ -39,7 +56,7 @@ If you still want to host a local version of the `ic-design-system` website, it'
 
 ```
 // dev mode
-npm i --legacy-peer-deps
+npm i
 npm run start
 
 // production build outputs to ./dist
@@ -71,11 +88,10 @@ Visit our websites to learn more about:
 - The [Secret Intelligence Service (MI6)](https://www.sis.gov.uk).
 - The [Government Communications Headquarters (GCHQ)](https://www.gchq.gov.uk).
 - The [Security Service (MI5)](https://www.mi5.gov.uk).
+- [His Majesty's Government Communications Centre (HMGCC)](https://www.hmgcc.gov.uk) - our national security partner.
 
 ## License
 
 Unless stated otherwise, the codebase is released under the [MIT License](https://opensource.org/licenses/MIT). This covers both the codebase and any sample code in the documentation. The documentation is and available under the terms of the [Open Government License v3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
 
 © Crown copyright 2022
-
-[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/mi6/ic-design-system/badge)](https://securityscorecards.dev/viewer/?uri=github.com/mi6/ic-design-system)

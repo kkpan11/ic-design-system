@@ -1,0 +1,41 @@
+name: Check Versions V2
+permissions: read-all
+
+on:
+  repository_dispatch:
+    types: design-system-release-v2
+
+jobs:
+  ic-design-system-install-comps:
+    name: "IC Design System Install Comps V2"
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: write
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: v2.0.0/develop
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - uses: browser-actions/setup-chrome@latest
+      - name: Install latest components
+        run: |
+          DOCS_VERSION=$(npm view @ukic/docs@v2-latest version)
+          FONTS_VERSION=$(npm view @ukic/fonts@v2-latest version)
+          REACT_VERSION=$(npm view @ukic/react@v2-latest version)
+          WEB_COMPS_VERSION=$(npm view @ukic/web-components@v2-latest version)
+          CANARY_DOCS_VERSION=$(npm view @ukic/canary-docs@v2-latest version)
+          CANARY_WEB_COMPS_VERSION=$(npm view @ukic/canary-web-components@v2-latest version)
+          CANARY_REACT_VERSION=$(npm view @ukic/canary-react@v2-latest version)
+          npm install @ukic/docs@$DOCS_VERSION @ukic/fonts@$FONTS_VERSION @ukic/react@$REACT_VERSION @ukic/web-components@$WEB_COMPS_VERSION @ukic/canary-docs@$CANARY_DOCS_VERSION @ukic/canary-react@$CANARY_REACT_VERSION @ukic/canary-web-components@$CANARY_WEB_COMPS_VERSION
+      - name: Create check-versions Pull Request
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 #v8.1.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: "check-versions-v2 -> v2.0.0/develop"
+          commit-message: "chore(root): Update to latest versions"
+          body: "Github action updated package versions"
+          branch: check-versions-v2
+          base: v2.0.0/develop
